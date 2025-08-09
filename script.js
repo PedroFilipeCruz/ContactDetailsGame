@@ -148,10 +148,10 @@
   // Buttons inside success panel
   document.getElementById("copyBtn").addEventListener("click", ()=>{
     const text = [
-      "Pedro Cruz — Innovation Unit (Manager)",
-      "Message: HIREME",
+      "Pedro Cruz",
+      "Código: HIREME",
       "Email: pedro.filipe.matos.cruz@gmail.com",
-      "Phone: +351 917 900 749"
+      "Nº Telefone: +351 917 900 749"
     ].join("\\n");
     navigator.clipboard.writeText(text).then(()=>{
       alert("Contact details copied to clipboard.");

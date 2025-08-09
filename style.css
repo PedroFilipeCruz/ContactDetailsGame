@@ -43,9 +43,13 @@ body{
 
 .table-wrap{overflow:auto}
 .grid{width:100%; border-collapse:collapse; font-size:14px}
-.grid th, .grid td{border-bottom:1px solid var(--border); padding:10px 8px; white-space:nowrap}
+.grid th, .grid td{border-bottom:1px solid var(--border); padding:10px 8px; white-space:nowrap; text-align: center;}
 .grid thead th{position:sticky; top:0; background:#0e1627}
 .grid tbody tr:hover{background-color:rgba(96,165,250,0.06)}
+.grid strong {
+  color: rgba(16,185,129,.5);   /* makes it red */
+  font-weight: bold; /* makes it bold */
+}
 .drag{text-align:center; color:#94a3b8; width:36px}
 .handle{cursor:grab; user-select:none}
 tr.dragging{opacity:.7; background-color:rgba(96,165,250,0.25) !important;}

@@ -3,76 +3,75 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Trade Log — Code Puzzle (Reorder Rows)</title>
+  <title>Contact Details — Code Puzzle </title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="topbar">
     <h1>Trade Log — Code Puzzle</h1>
-    <p class="tag">Reorder the rows so the first word of each <em>Note</em> (top → bottom) spells the hidden message.</p>
+    <p class="tag">Reordena as linhas de forma a que a primeira letra de cada <em>ID</em> (<em>top → bottom</em>) forme a mensagem escondida.</p>
   </header>
 
   <main class="container">
     <section class="panel">
-      <h2>Fictional Trade Log</h2>
+      <h2>Trade Log</h2>
       <div class="table-wrap">
         <table class="grid" id="tradeTable" aria-describedby="tableDesc">
-          <caption id="tableDesc">Drag rows by the handle (⋮⋮). Your similarity updates as you reorder.</caption>
+          <caption id="tableDesc">Arrasta as linhas (⋮⋮). A <em>Proximidade</em> atualiza-se enquanto reordenas.</caption>
           <thead>
             <tr>
               <th style="width:36px;"></th>
               <th>Date</th>
               <th>Instrument</th>
-              <th>Qty</th>
+              <th>Amount</th>
               <th>Price</th>
               <th>Side</th>
-              <th>Note</th>
+              <th>ID</th>
             </tr>
           </thead>
           <tbody>
             <!-- Rows are static for authenticity; the first words (H, I, R, E, M, E) form HIREME when ordered correctly -->
-            <tr draggable="true" data-key="H"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-04</td><td>EURUSD Spot</td><td>2M</td><td>1.0952</td><td>Buy</td><td><strong>Hold</strong> ahead of CPI print</td></tr>
-            <tr draggable="true" data-key="I"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-05</td><td>UST 10Y Future</td><td>150</td><td>112'16</td><td>Sell</td><td><strong>Initiate</strong> duration trim</td></tr>
-            <tr draggable="true" data-key="R"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-06</td><td>Gold Apr '25</td><td>75</td><td>2287.4</td><td>Buy</td><td><strong>Reduce</strong> exposure into fix</td></tr>
-            <tr draggable="true" data-key="E"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-07</td><td>GBPUSD Spot</td><td>1M</td><td>1.2641</td><td>Buy</td><td><strong>Enter</strong> tactical long</td></tr>
-            <tr draggable="true" data-key="M"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-10</td><td>MSCI World ETF</td><td>900</td><td>102.35</td><td>Buy</td><td><strong>Maintain</strong> core allocation</td></tr>
-            <tr draggable="true" data-key="E"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-11</td><td>Brent Jun '25</td><td>320</td><td>81.20</td><td>Sell</td><td><strong>Exit</strong> on inventory build</td></tr>
+            <tr draggable="true" data-key="H"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-04</td><td>EURUSD Spot</td><td>20</td><td>1.165</td><td>Buy</td><td><strong>H</strong>fgh8164</td></tr>
+            <tr draggable="true" data-key="I"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-05</td><td>UST 10Y Future</td><td>150</td><td>112.16</td><td>Sell</td><td><strong>I</strong>csx3475</td></tr>
+            <tr draggable="true" data-key="R"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-06</td><td>DEBOND2035</td><td>75</td><td>97.88</td><td>Buy</td><td><strong>R</strong>bvf9174</td></tr>
+            <tr draggable="true" data-key="E"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-07</td><td>EURJPY Spot</td><td>180</td><td>170.26</td><td>Buy</td><td><strong>E</strong>sde12197</td></tr>
+            <tr draggable="true" data-key="M"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-10</td><td>S&P500 ETF</td><td>900</td><td>1115.35</td><td>Buy</td><td><strong>M</strong>aqs0124</td></tr>
+            <tr draggable="true" data-key="E"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-11</td><td>DEPO_EUR</td><td>32</td><td>100.00</td><td>Sell</td><td><strong>E</strong>vcd3665</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
     <section class="panel solve">
-      <h2>Progress</h2>
-      <p class="hint">Current code from top-to-bottom: <span class="mono" id="currentCode">------</span></p>
+      <h2>Progresso</h2>
+      <p class="hint">Código Atual <em>top-to-bottom</em>: <span class="mono" id="currentCode">------</span></p>
       <div class="feedback">
         <div class="tiles" id="tiles" aria-live="polite" aria-atomic="true"></div>
         <div class="meters">
-          <label>Similarity <span id="simLabel">0%</span></label>
+          <label>Proximidade <span id="simLabel">0%</span></label>
           <progress id="simMeter" value="0" max="100"></progress>
         </div>
-        <p class="subhint">Green = correct letter & position • Yellow = letter exists but elsewhere • Gray = not in code</p>
+        <p class="subhint">Verde = letra e posição correta • Amarelo = a letra existe noutra posição </p>
       </div>
     </section>
 
     <section class="panel success" id="success" hidden>
-      <h2>🎉 You cracked the code!</h2>
-      <p>Innovation is about spotting patterns and testing hypotheses. Thanks for playing.</p>
+      <h2>🎉 <strong>You cracked the code!</strong></h2>
       <div class="card">
-        <div class="line"><strong>Message:</strong> <span class="mono">HIREME</span></div>
-        <div class="line"><strong>Candidate:</strong> Pedro Cruz</div>
+        <div class="line"><strong>Código:</strong> <span class="mono">HIREME</span></div>
+        <div class="line"><strong>Nome:</strong> Pedro Cruz</div>
         <div class="line"><strong>Email:</strong> <a href="mailto:pedro.filipe.matos.cruz@gmail.com">pedro.filipe.matos.cruz@gmail.com</a></div>
-        <div class="line"><strong>Phone:</strong> <a href="tel:+351917900749">+351 917 900 749</a></div>
+        <div class="line"><strong>Nº Telefone:</strong> <a href="tel:+351917900749">+351 917 900 749</a></div>
       </div>
       <div class="actions">
-        <button id="copyBtn">Copy contact details</button>
-        <button id="resetBtn" class="ghost">Scramble rows</button>
+        <button id="copyBtn">Copiar detalhe de contactos</button>
+        <button id="resetBtn" class="ghost">Repetir Jogo</button>
       </div>
     </section>
   </main>
 
   <footer class="foot">
-    <small>Built to accompany a cover letter for an Innovation Unit role. No tracking, no cookies — just a fun puzzle.</small>
+    <small>No tracking, no cookies — just for fun.</small>
   </footer>
 
   <script src="script.js"></script>
