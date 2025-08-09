@@ -47,7 +47,7 @@ body{
 .grid thead th{position:sticky; top:0; background:#0e1627}
 .grid tbody tr:hover{background-color:rgba(96,165,250,0.06)}
 .grid strong {
-  color: rgba(160, 157, 6, 0.5);   /* makes it red */
+  color: rgba(141, 198, 231, 0.5);   /* makes it red */
   font-weight: bold; /* makes it bold */
 }
 .drag{text-align:center; color:#94a3b8; width:36px}
