@@ -41,19 +41,30 @@ body{
 .panel h2{margin:0 0 8px; font-size:16px}
 .panel p{color:var(--muted); margin:6px 0}
 
-.table-wrap{overflow:auto}
+.table-wrap{overflow:auto; -webkit-overflow-scrolling: touch;}
 .grid{width:100%; border-collapse:collapse; font-size:14px}
-.grid th, .grid td{border-bottom:1px solid var(--border); padding:10px 8px; white-space:nowrap; text-align: center;}
+.grid th, .grid td{
+  border-bottom:1px solid var(--border);
+  padding:10px 8px;
+  white-space:nowrap;
+  text-align:center;
+}
 .grid thead th{position:sticky; top:0; background:#0e1627}
 .grid tbody tr:hover{background-color:rgba(96,165,250,0.06)}
-.grid strong {
-  color: rgba(141, 198, 231, 0.5);   /* makes it red */
-  font-weight: bold; /* makes it bold */
+.grid strong{
+  color: rgba(141, 198, 231, 0.9);
+  font-weight: 800;
 }
+
+/* Drag handle / dragging state */
 .drag{text-align:center; color:#94a3b8; width:36px}
-.handle{cursor:grab; user-select:none}
+.handle{
+  cursor:grab; user-select:none; touch-action:none; /* critical for touch drag */
+  display:inline-block; padding:4px 0;
+}
 tr.dragging{opacity:.7; background-color:rgba(96,165,250,0.25) !important;}
 
+/* Solve area */
 .solve .input-row{display:flex; gap:8px; margin-top:6px}
 .feedback{margin-top:8px}
 .tiles{display:flex; gap:6px; min-height:38px; align-items:center}
@@ -80,3 +91,15 @@ progress::-moz-progress-bar{background:linear-gradient(90deg, var(--bad), var(--
 .actions button{padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#111827; color:var(--text); cursor:pointer}
 .actions .ghost{background:#0b1220}
 .foot{max-width:1000px; margin:20px auto; padding:0 14px; color:var(--muted); font-size:12px; text-align:center}
+
+/* --- Mobile tweaks --- */
+@media (max-width: 600px){
+  .topbar h1{font-size:18px}
+  .topbar .tag{font-size:12px}
+  .grid{font-size:13px}
+  .grid th, .grid td{padding:12px 8px}
+  .drag{width:44px}
+  .handle{padding:8px 0}       /* larger tap target */
+  .tile{width:36px; height:36px; font-size:16px}
+  progress{height:14px}
+}

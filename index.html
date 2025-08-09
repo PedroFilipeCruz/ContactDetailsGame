@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact Details — Code Puzzle </title>
-  <link rel="stylesheet" href="style.css">
+  <title>Contact Details — Code Puzzle</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <header class="topbar">
@@ -29,14 +29,14 @@
               <th>ID</th>
             </tr>
           </thead>
-          <tbody>
-            <!-- Rows are static for authenticity; the first words (H, I, R, E, M, E) form HIREME when ordered correctly -->
-            <tr draggable="true" data-key="H"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-04</td><td>EURUSD Spot</td><td>20</td><td>1.165</td><td>Buy</td><td><strong>H</strong>fgh8164</td></tr>
-            <tr draggable="true" data-key="I"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-05</td><td>UST 10Y Future</td><td>150</td><td>112.16</td><td>Sell</td><td><strong>I</strong>csx3475</td></tr>
-            <tr draggable="true" data-key="R"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-06</td><td>DEBOND2035</td><td>75</td><td>97.88</td><td>Buy</td><td><strong>R</strong>bvf9174</td></tr>
-            <tr draggable="true" data-key="E"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-07</td><td>EURJPY Spot</td><td>180</td><td>170.26</td><td>Buy</td><td><strong>E</strong>sde12197</td></tr>
-            <tr draggable="true" data-key="M"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-10</td><td>S&P500 ETF</td><td>900</td><td>1115.35</td><td>Buy</td><td><strong>M</strong>aqs0124</td></tr>
-            <tr draggable="true" data-key="E"><td class="drag"><span class="handle">⋮⋮</span></td><td>2025-03-11</td><td>DEPO_EUR</td><td>32</td><td>100.00</td><td>Sell</td><td><strong>E</strong>vcd3665</td></tr>
+          <tbody id="rows">
+            <!-- Remove native draggable; we handle touch/mouse via Pointer Events -->
+            <tr data-key="H"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-04</td><td>EURUSD Spot</td><td>20</td><td>1.165</td><td>Buy</td><td><strong>H</strong>fgh8164</td></tr>
+            <tr data-key="I"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-05</td><td>UST 10Y Future</td><td>150</td><td>112.16</td><td>Sell</td><td><strong>I</strong>csx3475</td></tr>
+            <tr data-key="R"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-06</td><td>DEBOND2035</td><td>75</td><td>97.88</td><td>Buy</td><td><strong>R</strong>bvf9174</td></tr>
+            <tr data-key="E"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-07</td><td>EURJPY Spot</td><td>180</td><td>170.26</td><td>Buy</td><td><strong>E</strong>sde12197</td></tr>
+            <tr data-key="M"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-10</td><td>S&P500 ETF</td><td>900</td><td>1115.35</td><td>Buy</td><td><strong>M</strong>aqs0124</td></tr>
+            <tr data-key="E"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-11</td><td>DEPO_EUR</td><td>32</td><td>100.00</td><td>Sell</td><td><strong>E</strong>vcd3665</td></tr>
           </tbody>
         </table>
       </div>
@@ -74,6 +74,6 @@
     <small>No tracking, no cookies — just for fun.</small>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
