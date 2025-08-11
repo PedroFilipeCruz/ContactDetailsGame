@@ -162,14 +162,13 @@
     copyBtn.addEventListener("click", () => {
       const text = [
         "Pedro Cruz",
-        "Código: UHIRED",
         "Email: pedro.filipe.matos.cruz@gmail.com",
         "Nº Telefone: +351 917 900 749",
       ].join("\n");
       navigator.clipboard
         .writeText(text)
         .then(() => {
-          alert("Contact details copied to clipboard.");
+          alert("Detalhes copiados.");
         })
         .catch(() => {
           alert("Couldn't access clipboard. You can copy manually from the card.");
