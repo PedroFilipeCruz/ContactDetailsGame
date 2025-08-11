@@ -51,7 +51,7 @@ body{
 .grid thead th{position:sticky; top:0; background:#0e1627}
 .grid tbody tr:hover{background-color:rgba(96,165,250,0.06)}
 .grid strong{
-  color: rgba(231, 218, 28, 0.9);
+  color: rgba(227, 230, 75, 0.9);
   font-weight: 800;
 }
 
@@ -74,7 +74,7 @@ tr.moved {
   animation: flashRow 0.5s ease;
 }
 @keyframes flashRow {
-  0%   { background-color: rgba(255,255,0,0.6); }
+  0%   { background-color: rgba(20, 140, 209, 0.6); }
   100% { background-color: transparent; }
 }
 
