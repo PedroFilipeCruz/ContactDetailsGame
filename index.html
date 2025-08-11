@@ -17,10 +17,10 @@
       <h2>Trade Log</h2>
       <div class="table-wrap">
         <table class="grid" id="tradeTable" aria-describedby="tableDesc">
-          <caption id="tableDesc">Arrasta as linhas (⋮⋮). A <em>Proximidade</em> atualiza-se enquanto reordenas.</caption>
+          <caption id="tableDesc">Usa os botões ▲ ▼ em cada linha para a mover. A <em>Proximidade</em> atualiza-se enquanto reordenas.</caption>
           <thead>
             <tr>
-              <th style="width:36px;"></th>
+              <th style="width:64px;">Mover</th>
               <th>Date</th>
               <th>Instrument</th>
               <th>Amount</th>
@@ -30,13 +30,48 @@
             </tr>
           </thead>
           <tbody id="rows">
-            <!-- Remove native draggable; we handle touch/mouse via Pointer Events -->
-            <tr data-key="H"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-04</td><td>EURUSD Spot</td><td>20</td><td>1.165</td><td>Buy</td><td><strong>H</strong>fgh8164</td></tr>
-            <tr data-key="I"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-05</td><td>UST 10Y Future</td><td>150</td><td>112.16</td><td>Sell</td><td><strong>I</strong>csx3475</td></tr>
-            <tr data-key="R"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-06</td><td>DEBOND2035</td><td>75</td><td>97.88</td><td>Buy</td><td><strong>R</strong>bvf9174</td></tr>
-            <tr data-key="E"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-07</td><td>EURJPY Spot</td><td>180</td><td>170.26</td><td>Buy</td><td><strong>E</strong>sde12197</td></tr>
-            <tr data-key="M"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-10</td><td>S&P500 ETF</td><td>900</td><td>1115.35</td><td>Buy</td><td><strong>M</strong>aqs0124</td></tr>
-            <tr data-key="E"><td class="drag"><span class="handle" aria-label="Arrastar">⋮⋮</span></td><td>2025-03-11</td><td>DEPO_EUR</td><td>32</td><td>100.00</td><td>Sell</td><td><strong>E</strong>vcd3665</td></tr>
+            <tr data-key="U">
+              <td class="move">
+                <button class="btn up" aria-label="Mover para cima">▲</button>
+                <button class="btn down" aria-label="Mover para baixo">▼</button>
+              </td>
+              <td>2025-03-04</td><td>EURUSD Spot</td><td>20</td><td>1.165</td><td>Buy</td><td><strong>U</strong>fgh8164</td>
+            </tr>
+            <tr data-key="H">
+              <td class="move">
+                <button class="btn up" aria-label="Mover para cima">▲</button>
+                <button class="btn down" aria-label="Mover para baixo">▼</button>
+              </td>
+              <td>2025-03-05</td><td>UST 10Y Future</td><td>150</td><td>112.16</td><td>Sell</td><td><strong>H</strong>csx3475</td>
+            </tr>
+            <tr data-key="I">
+              <td class="move">
+                <button class="btn up" aria-label="Mover para cima">▲</button>
+                <button class="btn down" aria-label="Mover para baixo">▼</button>
+              </td>
+              <td>2025-03-06</td><td>DEBOND2035</td><td>75</td><td>97.88</td><td>Buy</td><td><strong>I</strong>bvf9174</td>
+            </tr>
+            <tr data-key="R">
+              <td class="move">
+                <button class="btn up" aria-label="Mover para cima">▲</button>
+                <button class="btn down" aria-label="Mover para baixo">▼</button>
+              </td>
+              <td>2025-03-07</td><td>EURJPY Spot</td><td>180</td><td>170.26</td><td>Buy</td><td><strong>R</strong>sde12197</td>
+            </tr>
+            <tr data-key="E">
+              <td class="move">
+                <button class="btn up" aria-label="Mover para cima">▲</button>
+                <button class="btn down" aria-label="Mover para baixo">▼</button>
+              </td>
+              <td>2025-03-10</td><td>S&P500 ETF</td><td>900</td><td>1115.35</td><td>Buy</td><td><strong>E</strong>aqs0124</td>
+            </tr>
+            <tr data-key="D">
+              <td class="move">
+                <button class="btn up" aria-label="Mover para cima">▲</button>
+                <button class="btn down" aria-label="Mover para baixo">▼</button>
+              </td>
+              <td>2025-03-11</td><td>DEPO_EUR</td><td>32</td><td>100.00</td><td>Sell</td><td><strong>D</strong>vcd3665</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -58,7 +93,7 @@
     <section class="panel success" id="success" hidden>
       <h2>🎉 <strong>You cracked the code!</strong></h2>
       <div class="card">
-        <div class="line"><strong>Código:</strong> <span class="mono">HIREME</span></div>
+        <div class="line"><strong>Código:</strong> <span class="mono">UHIRED</span></div>
         <div class="line"><strong>Nome:</strong> Pedro Cruz</div>
         <div class="line"><strong>Email:</strong> <a href="mailto:pedro.filipe.matos.cruz@gmail.com">pedro.filipe.matos.cruz@gmail.com</a></div>
         <div class="line"><strong>Nº Telefone:</strong> <a href="tel:+351917900749">+351 917 900 749</a></div>

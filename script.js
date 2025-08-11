@@ -1,7 +1,6 @@
 (function () {
-  const SECRET = "HIREME";
+  const SECRET = "UHIRED";
 
-  const table = document.getElementById("tradeTable");
   const tbody = document.getElementById("rows");
   const tiles = document.getElementById("tiles");
   const simMeter = document.getElementById("simMeter");
@@ -11,62 +10,63 @@
   const copyBtn = document.getElementById("copyBtn");
   const resetBtn = document.getElementById("resetBtn");
 
-  // Randomize order so it's not solved initially
   scrambleRows();
   updateProgress();
+  updateArrowDisabledStates();
 
-  // ---- Pointer Events drag & drop (works on touch + mouse) ----
-  let draggedRow = null;
+  // --- Row movement logic ---
+  function moveRow(row, direction) {
+    if (!row) return;
+    const target = (direction === "up") ? row.previousElementSibling : row.nextElementSibling;
+    if (!target) return;
 
-  // Delegate: start drag from handle only
-  tbody.addEventListener("pointerdown", (e) => {
-    const handle = e.target.closest(".handle");
-    if (!handle) return;
-    const row = handle.closest("tr");
-    if (!row || !tbody.contains(row)) return;
-
-    draggedRow = row;
-    row.classList.add("dragging");
-
-    // Capture pointer so we keep getting move/up events even if we leave the handle
-    handle.setPointerCapture(e.pointerId);
-    e.preventDefault(); // avoid text selection / scroll during drag
-  });
-
-  tbody.addEventListener("pointermove", (e) => {
-    if (!draggedRow) return;
-    const y = e.clientY;
-    const rows = [...tbody.querySelectorAll("tr:not(.dragging)")];
-
-    // Find the first row whose midpoint is below the cursor
-    let nextRow = null;
-    for (const r of rows) {
-      const rect = r.getBoundingClientRect();
-      const midpoint = rect.top + rect.height / 2;
-      if (y < midpoint) {
-        nextRow = r;
-        break;
-      }
+    if (direction === "up") {
+      tbody.insertBefore(row, target);
+    } else {
+      tbody.insertBefore(row, target.nextElementSibling);
     }
-    tbody.insertBefore(draggedRow, nextRow);
-  });
 
-  tbody.addEventListener("pointerup", () => {
-    if (!draggedRow) return;
-    draggedRow.classList.remove("dragging");
-    draggedRow = null;
+    row.classList.add("moved");
+    setTimeout(() => row.classList.remove("moved"), 500);
+
     updateProgress();
+    updateArrowDisabledStates();
+  }
+
+  tbody.addEventListener("click", (e) => {
+    const up = e.target.closest(".btn.up");
+    const down = e.target.closest(".btn.down");
+    if (!up && !down) return;
+    const row = e.target.closest("tr");
+    moveRow(row, up ? "up" : "down");
   });
 
-  // ---- Game logic ----
-  function computeCode() {
-    const letters = Array.from(tbody.querySelectorAll("tr")).map((tr) => {
-      const key = tr.getAttribute("data-key");
-      if (key) return key.toUpperCase();
-      const strong = tr.querySelector("td:last-child strong");
-      return strong ? (strong.textContent.trim()[0] || "-").toUpperCase() : "-";
+  tbody.addEventListener("keydown", (e) => {
+    const isArrowUp = e.key === "ArrowUp";
+    const isArrowDown = e.key === "ArrowDown";
+    if (!isArrowUp && !isArrowDown) return;
+    const btn = e.target.closest(".btn");
+    if (!btn) return;
+    e.preventDefault();
+    const row = btn.closest("tr");
+    moveRow(row, isArrowUp ? "up" : "down");
+  });
+
+  function updateArrowDisabledStates() {
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+    rows.forEach((r, idx) => {
+      const upBtn = r.querySelector(".btn.up");
+      const downBtn = r.querySelector(".btn.down");
+      if (upBtn) upBtn.disabled = (idx === 0);
+      if (downBtn) downBtn.disabled = (idx === rows.length - 1);
     });
-    return letters.join("");
+  }
+
+  // --- Game logic ---
+  function computeCode() {
+    return Array.from(tbody.querySelectorAll("tr"))
+      .map(tr => (tr.getAttribute("data-key") || "-").toUpperCase())
+      .join("");
   }
 
   function renderTiles(guess) {
@@ -76,7 +76,7 @@
     for (let i = 0; i < SECRET.length; i++) {
       const span = document.createElement("div");
       span.className = "tile " + (result[i] || "bad");
-      span.textContent = padded[i] ? padded[i] : " ";
+      span.textContent = padded[i] || " ";
       tiles.appendChild(span);
     }
   }
@@ -113,11 +113,8 @@
   }
 
   function levenshtein(a, b) {
-    const m = a.length,
-      n = b.length;
-    const dp = Array.from({ length: m + 1 }, () =>
-      new Array(n + 1).fill(0)
-    );
+    const m = a.length, n = b.length;
+    const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
     for (let i = 0; i <= m; i++) dp[i][0] = i;
     for (let j = 0; j <= n; j++) dp[0][j] = j;
     for (let i = 1; i <= m; i++) {
@@ -160,12 +157,12 @@
     }
   }
 
-  // Buttons inside success panel
+  // --- Buttons inside success panel ---
   if (copyBtn) {
     copyBtn.addEventListener("click", () => {
       const text = [
         "Pedro Cruz",
-        "Código: HIREME",
+        "Código: UHIRED",
         "Email: pedro.filipe.matos.cruz@gmail.com",
         "Nº Telefone: +351 917 900 749",
       ].join("\n");
@@ -175,9 +172,7 @@
           alert("Contact details copied to clipboard.");
         })
         .catch(() => {
-          alert(
-            "Couldn't access clipboard. You can copy manually from the card."
-          );
+          alert("Couldn't access clipboard. You can copy manually from the card.");
         });
     });
   }
@@ -186,6 +181,7 @@
     resetBtn.addEventListener("click", () => {
       scrambleRows();
       updateProgress();
+      updateArrowDisabledStates();
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
