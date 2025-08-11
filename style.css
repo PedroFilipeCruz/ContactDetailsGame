@@ -51,7 +51,7 @@ body{
 .grid thead th{position:sticky; top:0; background:#0e1627}
 .grid tbody tr:hover{background-color:rgba(96,165,250,0.06)}
 .grid strong{
-  color: rgba(141, 198, 231, 0.9);
+  color: rgba(231, 218, 28, 0.9);
   font-weight: 800;
 }
 
