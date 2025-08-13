@@ -70,9 +70,7 @@ body{
 .btn:focus{ outline:2px solid var(--accent); outline-offset:2px }
 .btn:disabled{ opacity:.45; cursor:not-allowed }
 
-tr.moved {
-  animation: flashRow 0.5s ease;
-}
+tr.moved { animation: flashRow 0.5s ease; }
 @keyframes flashRow {
   0%   { background-color: rgba(20, 140, 209, 0.6); }
   100% { background-color: transparent; }

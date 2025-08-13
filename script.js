@@ -1,5 +1,5 @@
 (function () {
-  const SECRET = "UHIRED";
+  const SECRET = "URHIRED"; // 7-letter code
 
   const tbody = document.getElementById("rows");
   const tiles = document.getElementById("tiles");
